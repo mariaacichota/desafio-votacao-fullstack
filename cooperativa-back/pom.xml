@@ -146,6 +146,9 @@
 					<excludes>
 						<exclude>**/domain/entity/**</exclude>
 						<exclude>**/dto/**</exclude>
+						<exclude>**/*Application.class</exclude>
+						<exclude>**/config/**</exclude>
+						<exclude>**/exception/**</exclude>
 					</excludes>
 				</configuration>
 
