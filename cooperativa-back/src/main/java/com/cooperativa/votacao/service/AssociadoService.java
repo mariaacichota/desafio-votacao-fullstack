@@ -5,6 +5,8 @@ import com.cooperativa.votacao.domain.entity.Assunto;
 import com.cooperativa.votacao.domain.repository.AssociadoRepository;
 import com.cooperativa.votacao.domain.repository.AssuntoRepository;
 import com.cooperativa.votacao.exception.NotFoundException;
+import com.cooperativa.votacao.validator.CpfValidator;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,8 +20,20 @@ public class AssociadoService {
 
     private final AssociadoRepository associadoRepository;
     private final AssuntoRepository assuntoRepository;
+    private final CpfValidator cpfValidator;
 
+    @Transactional
     public Associado criar(Associado associado) {
+
+        cpfValidator.validar(associado.getCpf());
+
+        if (associado.getId() == null) {
+            associado.setId(UUID.randomUUID());
+        }
+
+        associado.setCpf(
+                associado.getCpf().replaceAll("\\D", "")
+        );
 
         associado.setAssociadoEm(LocalDateTime.now());
 
@@ -30,11 +44,15 @@ public class AssociadoService {
 
         Associado associado = associadoRepository
                 .findById(associadoId)
-                .orElseThrow();
+                .orElseThrow(() ->
+                        new NotFoundException("Associado não encontrado")
+                );
 
         Assunto assunto = assuntoRepository
                 .findById(assuntoId)
-                .orElseThrow();
+                .orElseThrow(() ->
+                        new NotFoundException("Assunto não encontrado")
+                );
 
         associado.getAssuntos().add(assunto);
 
