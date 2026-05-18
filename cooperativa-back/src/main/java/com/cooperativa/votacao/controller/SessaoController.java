@@ -1,6 +1,5 @@
 package com.cooperativa.votacao.controller;
 
-import com.cooperativa.votacao.domain.entity.Sessao;
 import com.cooperativa.votacao.dto.request.SessaoRequest;
 import com.cooperativa.votacao.dto.response.SessaoResponse;
 import com.cooperativa.votacao.service.SessaoService;

@@ -1,7 +1,6 @@
 package com.cooperativa.votacao.domain.repository;
 
 import com.cooperativa.votacao.domain.entity.Sessao;
-import com.cooperativa.votacao.dto.response.SessaoResponse;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.time.LocalDateTime;
 import java.util.List;

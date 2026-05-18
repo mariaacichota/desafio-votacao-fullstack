@@ -2,7 +2,6 @@ package com.cooperativa.votacao.controller;
 
 import com.cooperativa.votacao.dto.response.ResultadoResponse;
 import com.cooperativa.votacao.service.ResultadoService;
-import com.cooperativa.votacao.service.SessaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

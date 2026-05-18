@@ -7,6 +7,7 @@ import com.cooperativa.votacao.domain.repository.PautaRepository;
 import com.cooperativa.votacao.domain.repository.SessaoRepository;
 import com.cooperativa.votacao.dto.request.SessaoRequest;
 import com.cooperativa.votacao.dto.response.SessaoResponse;
+import com.cooperativa.votacao.exception.BusinessException;
 import com.cooperativa.votacao.exception.NotFoundException;
 import com.cooperativa.votacao.mapper.SessaoMapper;
 import lombok.RequiredArgsConstructor;
@@ -44,7 +45,7 @@ public class SessaoService {
                 );
 
         if (possuiSessaoAberta) {
-            throw new IllegalStateException(
+            throw new BusinessException(
                     "Já existe uma sessão aberta para esta pauta"
             );
         }
